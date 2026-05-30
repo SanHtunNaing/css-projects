@@ -1,0 +1,100 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--body-bg);
+}
+
+:root {
+    --font-family: 'Karla', sans-serif;
+    --body-bg: #0d0e12;
+    --btn-bg: #15161e;
+    --btn-color: #cbcbcb;
+    --btn-color-hover: #ffffff;
+    --grad-color1: #eeaf61;
+    --grad-color2: #fb9061;
+    --grad-color3: #ee5ddc;
+    --grad-color4: #ce4993;
+    --grad-color5: #6a0d83;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.dynamic-border-btn {
+    position: relative;
+    padding: 1.2em 2.2em;
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .0em;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.dynamic-border-btn::before{
+   content: '';
+   position: absolute;
+   top: -50%;
+   left: -50%;
+   width: 200%;
+   height: 200%;
+   background: conic-gradient(
+    var(--grad-color1),
+    var(--grad-color2),
+    var(--grad-color3),
+    var(--grad-color4),
+    var(--grad-color5),
+    var(--grad-color1)
+   );
+   z-index: 1;
+   animation: rotateBorder 4s linear infinite;
+}
+
+.dynamic-border-btn::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background: var(--btn-bg);
+    border-radius: 6px;
+    z-index: 2;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 3;
+}
+
+@keyframes rotateBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    
+}
+
+.dynamic-border-btn:hover {
+    color: var(--btn-color-hover);
+}
+
+.dynamic-border-btn:hover::before{
+    animation-duration: 2s;
+}
+
+.dynamic-border-btn:active {
+    transform: scale(0.98);
+}
